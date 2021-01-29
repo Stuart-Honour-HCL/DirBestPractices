@@ -7,12 +7,48 @@
     import Control from "../control";
     import type GitFile from "../gitFile";
     import GitContents, { ROOT_FOLDER } from "../gitContents";
+    import Debug from "../debug";
+import APIHelper from "../api";
 
     onMount(() => {});
+
+    function openNewFileDialog() {
+        Debug.log("Showing popup");
+        Control.showPopup(
+            "New file name (.html)",
+            true,
+            true,
+            true,
+            function (button, input) {
+                Debug.log("Closed popup with:", button, input);
+                if(!input){
+                    Control.showInfolog("File name can't be blank");
+                }
+                else{
+                    let fullName : string = input;
+                    if(!fullName.toLowerCase().endsWith(".html")){
+                        fullName = `${fullName}.html`;
+                    }
+                    APIHelper.createNewFile(`${currentContents.path}/${fullName}`).then(file =>{
+                        Control.showInfolog("New file created: " + file.path);
+                        currentContents.dirList.push(file);
+                        currentContents.dirList = currentContents.dirList;
+                    }).catch(reason =>{
+                        Control.showInfolog("ERROR creating new file: " + reason);
+                    });
+                }
+            }
+        );
+    }
 </script>
 
 <div id="explorer">
     {#if currentContents && currentContents.type == "dir"}
+        <div id="explorerControls">
+            {#if currentContents.depthLevel() >= 2}
+                <button on:click={openNewFileDialog}>New file</button>
+            {/if}
+        </div>
         <table>
             <thead>
                 <tr>
@@ -70,21 +106,25 @@
     }
     #explorer:hover {
         cursor: default;
-       
     }
-    #explorer td:hover { 
+    #explorer td:hover {
         color: cadetblue;
     }
-    .fa-folder{
+    .fa-folder {
         color: #79b8ff;
     }
-    .fa-file{
+    .fa-file {
         color: gray;
     }
-    table{
+    table {
         width: 50%;
         left: 25%;
         position: relative;
     }
+    #explorerControls {
+        width: 50%;
+        left: 25%;
+        position: relative;
+        min-height: 50px;
+    }
 </style>
-

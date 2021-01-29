@@ -3,11 +3,17 @@ import APIHelper from './api';
 import type GitFile from './gitFile';
 import queryString, { StringifyOptions } from "query-string";
 import type GitContents from './gitContents';
+import Debug from './debug';
 
 export default class Control {
     action: string;
     infolog: string;
- 
+    popupText: string;
+    popupShowOK: boolean;
+    popupShowCancel: boolean;
+    popupShowInput: boolean;
+    popupOnclose: Function; 
+
     static currentContents: GitContents;
     static stateChange = writable<Control>(undefined);
 
@@ -24,6 +30,23 @@ export default class Control {
         ctrl.infolog = message;
         this.stateChange.update(c => ctrl);
     }
+    
+    static showPopup(message: string, showOKButton: boolean = true, showCancelButton: boolean = true, showInput: boolean = true, onClose: Function = undefined) {
+        let ctrl = new Control("showPopup");
+        ctrl.popupText = message;
+        ctrl.popupOnclose = onClose;
+        ctrl.popupShowOK = showOKButton;
+        ctrl.popupShowCancel = showCancelButton;
+        ctrl.popupShowInput = showInput;
+
+        Debug.log("Showing popup");
+        this.stateChange.update(c => ctrl);
+    }
+    static closePopup(){
+        this.stateChange.update(c => new Control("closePopup"));
+    }
+
+
 
     static setQueryString(obj: any) {
         const stringified = queryString.stringify(obj);

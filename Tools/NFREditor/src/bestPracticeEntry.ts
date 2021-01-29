@@ -9,46 +9,55 @@ export default class BestPracticeEntry {
     tags: string[];
     surveyQuestions: SurveyQuestion[];
 
+
     /**
      * Initialise a best practice entry from the HTML content
      */
-    constructor(content: string) {
-        var el = BestPracticeEntry.getElementFromText(content);
-
-        let col = el.getElementsByClassName("description");
-        this.descriptionHTML = col[0] ? col[0].innerHTML : " ";
-        Debug.log("Description: " + this.descriptionHTML);
-
-        col = el.getElementsByClassName("title");
-        this.titleHTML = col[0] ? col[0].innerHTML : " ";
-        Debug.log("Title: " + this.titleHTML);
-
-        this.tags = new Array<string>();
-        col = el.getElementsByClassName("tags");
-        if (col[0]) {
-            let tagElement = col[0].getElementsByClassName("tag");
-
-            for (let i = 0; i < tagElement.length; ++i) {
-                this.tags.push(tagElement[i].innerHTML);
-            }
+    constructor(content: string = undefined) {
+        if (!content) {
+            this.descriptionHTML = "New best practice entry";
+            this.titleHTML = "Best practice entry";
+            this.tags = ["new"];
+            this.surveyQuestions = [];
         }
-        Debug.log("Tags: " + this.tags);
+        else {
+            var el = BestPracticeEntry.getElementFromText(content);
 
-        this.surveyQuestions = new Array<SurveyQuestion>();
-        col = el.getElementsByClassName("survey");
-        if (col[0]) {
-            let questionElement = col[0].getElementsByClassName("surveyQuestion");
+            let col = el.getElementsByClassName("description");
+            this.descriptionHTML = col[0] ? col[0].innerHTML : " ";
+            Debug.log("Description: " + this.descriptionHTML);
 
-            for (let i = 0; i < questionElement.length; ++i) {
-                let q = new SurveyQuestion();
-                let text = questionElement[i].getElementsByClassName("text");
-                q.question = text[0] ? text[0].innerHTML : " ";
-                let measurement = questionElement[i].getElementsByClassName("measurement");
-                q.howToMeasure = measurement[0] ? measurement[0].innerHTML : " ";
-                let target = questionElement[i].getElementsByClassName("target");
-                q.target = target[0] ? target[0].innerHTML : " ";
+            col = el.getElementsByClassName("title");
+            this.titleHTML = col[0] ? col[0].innerHTML : " ";
+            Debug.log("Title: " + this.titleHTML);
 
-                this.surveyQuestions.push(q);
+            this.tags = new Array<string>();
+            col = el.getElementsByClassName("tags");
+            if (col[0]) {
+                let tagElement = col[0].getElementsByClassName("tag");
+
+                for (let i = 0; i < tagElement.length; ++i) {
+                    this.tags.push(tagElement[i].innerHTML);
+                }
+            }
+            Debug.log("Tags: " + this.tags);
+
+            this.surveyQuestions = new Array<SurveyQuestion>();
+            col = el.getElementsByClassName("survey");
+            if (col[0]) {
+                let questionElement = col[0].getElementsByClassName("surveyQuestion");
+
+                for (let i = 0; i < questionElement.length; ++i) {
+                    let q = new SurveyQuestion();
+                    let text = questionElement[i].getElementsByClassName("text");
+                    q.question = text[0] ? text[0].innerHTML : " ";
+                    let measurement = questionElement[i].getElementsByClassName("measurement");
+                    q.howToMeasure = measurement[0] ? measurement[0].innerHTML : " ";
+                    let target = questionElement[i].getElementsByClassName("target");
+                    q.target = target[0] ? target[0].innerHTML : " ";
+
+                    this.surveyQuestions.push(q);
+                }
             }
         }
     }
@@ -94,7 +103,7 @@ export default class BestPracticeEntry {
 
                     let res = el.getElementsByTagName("body")[0].innerHTML;
 
-                    Debug.log("Saved HTML: " + res); 
+                    Debug.log("Saved HTML: " + res);
                     resolve(res);
                 });
         });

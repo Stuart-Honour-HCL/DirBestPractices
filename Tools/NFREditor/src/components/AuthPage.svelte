@@ -18,7 +18,7 @@
                     document.cookie = `nfrGitUser=${user}`;
                     document.cookie = `nfrGitRepo=${repo}`;
                     document.cookie = `nfrGitToken=${token}`;
-                    
+
                     Control.signalAuthChanged();
                 })
                 .catch((reason) => {
@@ -31,24 +31,51 @@
             Control.showInfolog("Please provide git user, repo and token");
         }
     }
+    function openInNewTab(url) {
+        var win = window.open(url, "_blank");
+        win.focus();
+    }
 </script>
 
 <main>
     <h1>Best practices. Together</h1>
 
     <div id="authForm">
-        <div class="formEntry">
-            <label for="user">User</label>
-            <input bind:value={user} id="user" placeholder="Git user" />
-        </div>
-        <div class="formEntry">
-            <label for="repo">Repo</label>
-            <input bind:value={repo} id="repo" placeholder="Git repo name" />
-        </div>
-        <div class="formEntry">
-            <label for="token">Token</label>
-            <input bind:value={token} id="token" placeholder="Git token" />
-        </div>
+        <table>
+            <tr>
+                <td> <label for="user">User</label></td>
+                <td
+                    ><input
+                        bind:value={user}
+                        id="user"
+                        placeholder="Git user"
+                    /></td
+                ><td />
+            </tr>
+            <tr>
+                <td> <label for="repo">Repo</label></td>
+                <td>
+                    <input
+                        bind:value={repo}
+                        id="repo"
+                        placeholder="Git repo name"
+                    />
+                </td><td />
+            </tr>
+            <tr>
+                <td> <label for="token">Token</label></td>
+                <td>
+                    <input
+                        bind:value={token}
+                        id="token"
+                        placeholder="Git token"
+                    /></td
+                ><td> <i title="How to generate a token" 
+                    class="fa fa-info-circle" 
+                    on:click={(x) => {openInNewTab('https://github.com/settings/tokens');}} /></td>
+            </tr>
+        </table>
+
         <div class="controls">
             <button on:click={saveAuth}>Submit</button>
         </div>
@@ -73,5 +100,8 @@
     input {
         width: 80%;
         font-size: smaller;
+    }
+    table {
+        width: 100%;
     }
 </style>

@@ -16,4 +16,9 @@ export default class GitContents{
             return null;
         }
     }
+
+    depthLevel(): number{
+        let matches = this.path.match(/\//g);
+        return matches?matches.length:0;
+    }
 }

@@ -9,11 +9,15 @@
 	import GitExplorer from "./GitExplorer.svelte";
 	import { ROOT_FOLDER } from "../gitContents";
 	import TextEdit from "./TextEdit.svelte";
+	import PopupDialog from "./PopupDialog.svelte";
 
 	let parsed = queryString.parse(location.search);
 
 	let authenticated = false;
 	let infologShown = false;
+	let popupOpen = false;
+	let popupControl: Control;
+
 	let infologMessage: string;
 	let currentContents = Control.currentContents;
 
@@ -37,6 +41,7 @@
 
 	Control.stateChange.subscribe((what) => {
 		if (!what) {
+			Debug.log("APP - state changed what undefined: ", what);
 			return;
 		}
 
@@ -52,6 +57,14 @@
 					infologShown = false;
 					infologMessage = undefined;
 				}, 2000);
+				break;
+			case "showPopup":
+				popupOpen = true;
+				popupControl = what;
+				break;
+			case "closePopup":
+				popupOpen = false;
+				popupControl = undefined;
 				break;
 			case "pathChanged":
 				currentContents = Control.currentContents;
@@ -90,6 +103,16 @@
 		{/if}
 	{:else}
 		<AuthPage />
+	{/if}
+
+	{#if popupOpen && popupControl}	 
+		<PopupDialog		
+			popupText={popupControl.popupText}
+			showOKButton={popupControl.popupShowOK}
+			showCancelButton={popupControl.popupShowCancel}
+			showinput={popupControl.popupShowInput}
+			closePopup={popupControl.popupOnclose}
+		/>
 	{/if}
 </main>
 <svelte:head>
