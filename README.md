@@ -6,7 +6,7 @@ Best practices repository for Dynamics 365 for Finance and Supply Chain Manageme
 ## Etiquette:
 1. **Always say why** - Explain why something is best practice. Ensure the [five whys](https://en.wikipedia.org/wiki/Five_whys) are either stated explictly or easily deducible. Ensure the link to project goals is provided (see [wiki](https://github.com/Costin-hcl/DirBestPractices/wiki) for matrix). See section *Why the current HTML format in GitHub repo was chosen?* as an example.
 
-2. **Be clear and succinct** - Best practices are not a place to write essays. Say what you need to say in as few words as possible. Be clear and **define terms** that may not be known by everyone, including acronyms.
+2. **Be clear and concise** - Best practices are not a place to write essays. Say what you need to say in as few words as possible. Be clear and **define terms** that may not be known by everyone, including acronyms.
 
 3. **Always provide references** - If best practices are extracted from a documentation article or blog, provide the link. It's only fair to credit the original authors.
 
