@@ -1,0 +1,21 @@
+<div class="bestPracticeEntry">
+  <div class="tags">
+    <div class="tag">azure</div>
+    <div class="tag"> performance</div>
+    <div class="tag"> logic apps</div>
+  </div>
+  <div class="title">Use parallel processing in Logic Apps</div>
+  <div class="description">
+    <p>Be aware that the "foreach" loops in Logic Apps&nbsp;<a href="https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-control-flow-loops">run by default in parallel.</a>&nbsp;This can improve performance when operations executed on each member of the iterated collection can run independently. </p>
+    <p>It can also create tricky race conditions if used incorrectly, for instance setting a variable in parallel, since the order of setting the variable is unpredictable.</p>
+    <p>The big gotcha when using parallel loops is that nested loops will run sequentially, which may cause unnecessary delays.&nbsp;To run operations in parallel for items in a nested loop, create and&nbsp;call a<strong> child logic app</strong>.</p>
+    <p><br></p>
+  </div>
+  <div class="survey">
+    <div class="surveyQuestion">
+      <div class="text">Can nested loops in Logic Apps be made faster using child Logic Apps?</div>
+      <div class="measurement">Code review</div>
+      <div class="target">No nested loops unless operations in nested loop should run sequentially</div>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,143 @@
 <div class="bestPracticeEntry">
-    <div class="tags">
-        <span>development</span>
-        <span>Azure</span>
+  <div class="tags">
+    <div class="tag">X++</div>
+    <div class="tag"> code</div>
+  </div>
+  <div class="title">Use set-based processing</div>
+  <div class="description">
+
+    <p>Set-based operators in X++ are much faster than the equivalent record-by-record operations.</p>
+    <p>Here is the list of set-based instructions from <a href="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/speeding-up-sql-operations?redirectedfrom=MSDN">Microsoft's documentation</a>:</p>
+    <table class="table" style="box-sizing: inherit; border-collapse: collapse; border-spacing: 0px; outline-color: inherit; table-layout: auto; width: 940px; font-size: 0.875rem; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+      <thead style="box-sizing: inherit; outline-color: inherit;">
+        <tr class="header" style="box-sizing: inherit; outline-color: inherit;">
+          <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Construct</p>
+          </th>
+          <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Description</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody style="box-sizing: inherit; outline-color: inherit;">
+        <tr class="odd" style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><a href="https://msdn.microsoft.com/en-us/library/gg923766(v=ax.60)" data-linktype="external" style="box-sizing: inherit; background-color: transparent; outline-color: inherit; color: var(--theme-primary-base); cursor: pointer; text-decoration: none; overflow-wrap: break-word; outline-style: initial; outline-width: 0px;">RecordSortedList</a></p>
+          </td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Allows you to insert multiple records in one database trip. Use the RecordSortedList construct when you want a subset of data from a particular table, and when you want it sorted in an order that does not currently exist as an index.</p>
+          </td>
+        </tr>
+        <tr class="even" style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><a href="https://msdn.microsoft.com/en-us/library/gg923748(v=ax.60)" data-linktype="external" style="box-sizing: inherit; background-color: transparent; outline-color: inherit; color: var(--theme-primary-base); cursor: pointer; text-decoration: none; overflow-wrap: break-word; outline-style: initial; outline-width: 0px;">RecordInsertList</a></p>
+          </td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Allows you to insert multiple records in one database trip. Use the RecordInsertList construct when you do not need to sort the data.</p>
+          </td>
+        </tr>
+        <tr class="odd" style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><a href="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/insert-recordset" data-linktype="relative-path" style="box-sizing: inherit; background-color: transparent; outline-color: inherit; color: var(--theme-primary-base); cursor: pointer; text-decoration: none; overflow-wrap: break-word; outline-style: initial; outline-width: 0px;">insert_recordset</a></p>
+          </td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Allows you to copy multiple records from one or more tables directly into another table on a single database trip.</p>
+          </td>
+        </tr>
+        <tr class="even" style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><a href="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/update-recordset" data-linktype="relative-path" style="box-sizing: inherit; background-color: transparent; outline-color: inherit; color: var(--theme-primary-base); cursor: pointer; text-decoration: none; overflow-wrap: break-word; outline-style: initial; outline-width: 0px;">update_recordset</a></p>
+          </td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Allows you to update multiple rows in a table on a single database trip.</p>
+          </td>
+        </tr>
+        <tr class="odd" style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><a href="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/delete-from" data-linktype="relative-path" style="box-sizing: inherit; background-color: transparent; outline-color: inherit; color: var(--theme-primary-base); cursor: pointer; text-decoration: none; overflow-wrap: break-word; outline-style: initial; outline-width: 0px;">delete_from</a></p>
+          </td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">
+            <p style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Allows you to delete multiple records from the database on a single database trip.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Be aware of the situation in which <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-ref/xpp-data/xpp-data-perf">set-based operations will run record-by-record</a> (e.g. using database logging or overriding methods):</p>
+
+
+    <div class="table-scroll-wrapper" style="box-sizing: inherit; outline-color: inherit; overflow: auto hidden; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+      <table class="table" style="box-sizing: inherit; border-collapse: collapse; border-spacing: 0px; outline-color: inherit; table-layout: auto; width: 940px; font-size: 0.875rem;">
+        <caption class="visually-hidden" style="box-sizing: inherit; outline-color: inherit; border-width: 0px 0px 1px; border-style: solid; border-color: var(--theme-border); border-image: initial; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 1.125rem; position: absolute; width: 1px; overflow-wrap: normal; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-align: right;">TABLE 1</caption>
+        <thead style="box-sizing: inherit; outline-color: inherit;">
+          <tr style="box-sizing: inherit; outline-color: inherit;">
+            <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">Situation</th>
+            <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">delete_from</th>
+            <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">update_recordset</th>
+            <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">insert_recordset</th>
+            <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">RecordSortedList, RecordInsertList</th>
+            <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">Used to override</th>
+          </tr>
+        </thead>
+        <tbody style="box-sizing: inherit; outline-color: inherit;">
+          <tr style="box-sizing: inherit; outline-color: inherit;">
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Non-SQL tables</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Not applicable</td>
+          </tr>
+          <tr style="box-sizing: inherit; outline-color: inherit;">
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Delete actions</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">No</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">No</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">No</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;"><strong style="box-sizing: inherit; font-weight: 600; outline-color: inherit;">skipDeleteActions</strong></td>
+          </tr>
+          <tr style="box-sizing: inherit; outline-color: inherit;">
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">The database log is enabled.</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">No</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;"><strong style="box-sizing: inherit; font-weight: 600; outline-color: inherit;">skipDatabaseLog</strong></td>
+          </tr>
+          <tr style="box-sizing: inherit; outline-color: inherit;">
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Overridden method</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;"><strong style="box-sizing: inherit; font-weight: 600; outline-color: inherit;">skipDataMethods</strong></td>
+          </tr>
+          <tr style="box-sizing: inherit; outline-color: inherit;">
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Alerts are set up for the table.</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">No</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;"><strong style="box-sizing: inherit; font-weight: 600; outline-color: inherit;">skipEvents</strong></td>
+          </tr>
+          <tr style="box-sizing: inherit; outline-color: inherit;">
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">The<span>&nbsp;</span><strong style="box-sizing: inherit; font-weight: 600; outline-color: inherit;">ValidTimeStateFieldType</strong><span>&nbsp;</span>property on a table is set to a value other than<span>&nbsp;</span><strong style="box-sizing: inherit; font-weight: 600; outline-color: inherit;">None</strong>.</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Yes</td>
+            <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Not applicable</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="title">
-        Exposing Application insights from D365 F&SCM
+    <p><br></p>
+    <p>See also performance DOs and DON'Ts by <a href="https://community.dynamics.com/365/b/techtalks/posts/finance-and-operations-performance-key-patterns-and-anti-patterns-for-dynamics-365-1-15-19">Davy Vliegen</a>.</p>
+  </div>
+  <div class="survey">
+    <div class="surveyQuestion">
+      <div class="text">New question</div>
+      <div class="measurement">Code review</div>
+      <div class="target">Target</div>
     </div>
-    <div class="description">
-        
-    </div>
+  </div>
 </div>
