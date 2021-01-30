@@ -10,13 +10,16 @@
 	import { ROOT_FOLDER } from "../gitContents";
 	import TextEdit from "./TextEdit.svelte";
 	import PopupDialog from "./PopupDialog.svelte";
+	import AuthMenu from "./AuthMenu.svelte";
 
 	let parsed = queryString.parse(location.search);
 
 	let authenticated = false;
 	let infologShown = false;
 	let popupOpen = false;
+	let menuOpen = false;
 	let popupControl: Control;
+	let unsavedChanges: boolean = false;
 
 	let infologMessage: string;
 	let currentContents = Control.currentContents;
@@ -69,6 +72,9 @@
 			case "pathChanged":
 				currentContents = Control.currentContents;
 				break;
+			case "closeMenu":
+				menuOpen = false;
+				break;
 		}
 	});
 
@@ -85,18 +91,7 @@
 		{#if currentContents}
 			<!--<Editor /> -->
 			{#if currentContents.type == "file"}
-				<div id="editorback">
-					<i
-						on:click={(x) => {
-							Control.openPath(
-								currentContents.parentPath(),
-								true
-							);
-						}}
-						class="fa fa-arrow-circle-left"
-					/>
-				</div>
-				<TextEdit currentFile={currentContents.file} />
+				<TextEdit currentFile={currentContents.file} {unsavedChanges} />
 			{:else}
 				<GitExplorer {currentContents} />
 			{/if}
@@ -105,14 +100,28 @@
 		<AuthPage />
 	{/if}
 
-	{#if popupOpen && popupControl}	 
-		<PopupDialog		
+	{#if popupOpen && popupControl}
+		<PopupDialog
 			popupText={popupControl.popupText}
 			showOKButton={popupControl.popupShowOK}
 			showCancelButton={popupControl.popupShowCancel}
 			showinput={popupControl.popupShowInput}
 			closePopup={popupControl.popupOnclose}
 		/>
+	{/if}
+
+	{#if authenticated}
+		{#if menuOpen}
+			<AuthMenu />
+		{:else}
+			<div id="menuButton" on:click={(x) => (menuOpen = true)}>
+				<i
+					id="menuButtonIcon"
+					on:click={(x) => {}}
+					class="fa fa-bars"
+				/>
+			</div>
+		{/if}
 	{/if}
 </main>
 <svelte:head>
@@ -137,12 +146,22 @@
 		}
 	}
 
-	#editorback {
-		font-size: large;
-		text-align: left;
+	#menuButton {
+		position: absolute;
+		top: 32px;
+		right: 0;
+		width: 35px;
+		height: 35px;
+		border: 1px solid darkgray;
+		background-color: black;
+		color: blanchedalmond;
+		font-size: 30px;
+		text-align: center;
+		line-height: 35px;
 	}
-	#editorback:hover {
+	#menuButton:hover {
 		color: cadetblue;
-		cursor: default;
 	}
+
+
 </style>

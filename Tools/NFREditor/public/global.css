@@ -43,7 +43,6 @@ input, button, select, textarea {
 input:disabled {
 	color: #ccc;
 }
-
 button {
 	color: #333;
 	background-color: #f4f4f4;
@@ -60,4 +59,15 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+button.customButton {color: #333;
+	background-color: #f4f4f4;
+	outline: none;
+	font-size: 12px;
+	height: 32px;
+	width: 64px;
+}
+button.customButton:hover {
+	background-color: #fff;
 }

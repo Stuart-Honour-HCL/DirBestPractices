@@ -1,4 +1,3 @@
-import APIHelper from "./api";
 import Debug from "./debug";
 import SurveyQuestion from "./surveyQuestion";
 

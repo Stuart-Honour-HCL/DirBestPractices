@@ -8,7 +8,7 @@
     import type GitFile from "../gitFile";
     import GitContents, { ROOT_FOLDER } from "../gitContents";
     import Debug from "../debug";
-import APIHelper from "../api";
+    import APIHelper from "../api";
 
     onMount(() => {});
 
@@ -21,40 +21,72 @@ import APIHelper from "../api";
             true,
             function (button, input) {
                 Debug.log("Closed popup with:", button, input);
-                if(!input){
-                    Control.showInfolog("File name can't be blank");
+                if (button == "Cancel") {
+                    return;
                 }
-                else{
-                    let fullName : string = input;
-                    if(!fullName.toLowerCase().endsWith(".html")){
+                if (!input) {
+                    Control.showInfolog("File name can't be blank");
+                } else {
+                    let fullName: string = input;
+                    if (!fullName.toLowerCase().endsWith(".html")) {
                         fullName = `${fullName}.html`;
                     }
-                    APIHelper.createNewFile(`${currentContents.path}/${fullName}`).then(file =>{
-                        Control.showInfolog("New file created: " + file.path);
-                        currentContents.dirList.push(file);
-                        currentContents.dirList = currentContents.dirList;
-                    }).catch(reason =>{
-                        Control.showInfolog("ERROR creating new file: " + reason);
-                    });
+                    APIHelper.createNewFile(
+                        `${currentContents.path}/${fullName}`
+                    )
+                        .then((file) => {
+                            Control.showInfolog(
+                                "New file created: " + file.path
+                            );
+                            currentContents.dirList.push(file);
+                            currentContents.dirList = currentContents.dirList;
+                        })
+                        .catch((reason) => {
+                            Control.showInfolog(
+                                "ERROR creating new file: " + reason
+                            );
+                        });
                 }
             }
         );
+    }
+
+    function openParentPath(idx: number) {
+        let parts = currentContents.pathComponents();
+        let fullPath = parts[0];
+        for (let i = 1; i <= idx; ++i) {
+            fullPath += "/" + parts[i];
+        }
+
+        Debug.log("Opening path:", fullPath);
+        Control.openPath(fullPath);
     }
 </script>
 
 <div id="explorer">
     {#if currentContents && currentContents.type == "dir"}
         <div id="explorerControls">
-            {#if currentContents.depthLevel() >= 2}
-                <button on:click={openNewFileDialog}>New file</button>
-            {/if}
+            <div id="expButtons">
+                {#if currentContents.depthLevel() >= 2}
+                    <button class="customButton" on:click={openNewFileDialog}>New file</button>
+                {/if}
+            </div>
+            <div id="explorerPath">
+                {#each currentContents.pathComponents() as c, idx}
+                    /<span
+                        class="patchComponent"
+                        on:click={(x) => {
+                            openParentPath(idx);
+                        }}>{c}</span
+                    >
+                {/each}
+            </div>
         </div>
         <table>
             <thead>
                 <tr>
                     <th />
                     <th>Name</th>
-                    <th>Info</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +98,6 @@ import APIHelper from "../api";
                     >
                         <td><i class="fa fa-folder" /></td>
                         <td>...</td>
-                        <td>Root</td>
                     </tr>
                 {/if}
 
@@ -84,7 +115,6 @@ import APIHelper from "../api";
                             {/if}
                         </td>
                         <td>{d.name}</td>
-                        <td>{d.type}</td>
                     </tr>
                 {/each}
             </tbody>
@@ -117,14 +147,28 @@ import APIHelper from "../api";
         color: gray;
     }
     table {
-        width: 50%;
-        left: 25%;
+        width: 60%;
+        left: 20%;
         position: relative;
     }
+    table td:nth-child(1) {
+        width: 50px;
+    }
+
     #explorerControls {
-        width: 50%;
-        left: 25%;
+        width: 70%;
+        left: 20%;
         position: relative;
         min-height: 50px;
+        font-size: 14px;
+    }
+
+    #expButtons {
+        height: 32px;
+        padding-bottom: 5px;
+    }
+
+    .patchComponent:hover {
+        text-decoration: underline;
     }
 </style>

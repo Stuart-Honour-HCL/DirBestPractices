@@ -45,6 +45,9 @@ export default class Control {
     static closePopup(){
         this.stateChange.update(c => new Control("closePopup"));
     }
+    static closeMenu(){
+        this.stateChange.update(c => new Control("closeMenu"));
+    }
 
 
 

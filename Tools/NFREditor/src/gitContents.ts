@@ -21,4 +21,8 @@ export default class GitContents{
         let matches = this.path.match(/\//g);
         return matches?matches.length:0;
     }
+
+    pathComponents(): string[]{
+        return this.path.split("/");
+    }
 }

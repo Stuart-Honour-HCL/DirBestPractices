@@ -7,4 +7,15 @@ export default class GitFile{
     sha: string;
     size: number;
     message: string;
+
+    
+    static parentPath(file: GitFile): string{
+        let idx = file.path.lastIndexOf("/");
+        if(idx > 0){
+            return file.path.substr(0, idx);
+        }
+        else{
+            return null;
+        }
+    }
 }
