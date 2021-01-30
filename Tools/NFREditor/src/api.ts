@@ -38,37 +38,6 @@ export default class APIHelper {
         });
     }
 
-    static getFileContent(path: string): Promise<GitFile> {
-        if (!APIHelper.token || !APIHelper.user || !APIHelper.repo) {
-            console.error("Token, user and repo must be set");
-        }
-
-        return new Promise<GitFile>((resolve, reject) => {
-            APIHelper.apiGET(`${APIHelper.user}/${APIHelper.repo}/contents/${path}`, APIHelper.token).then(file => {
-                console.log("Read file:" + file.name);
-                if (file.content) {
-                    console.log("Content: " + atob(file.content));
-                }
-                resolve(file);
-            }).catch(reason => {
-                reject(reason);
-            });
-        });
-    }
-    static getDirContent(path: string): Promise<GitFile[]> {
-        if (!APIHelper.token || !APIHelper.user || !APIHelper.repo) {
-            console.error("Token, user and repo must be set");
-        }
-
-        return new Promise<GitFile[]>((resolve, reject) => {
-            APIHelper.apiGET(`${APIHelper.user}/${APIHelper.repo}/contents/${path}`, APIHelper.token).then(dir => {
-                console.log("Read dir:" + path +". Content count: " + dir.length);           
-                resolve(dir);
-            }).catch(reason => {
-                reject(reason);
-            });
-        });
-    }
     static writeFile(file: GitFile): Promise<GitFile> {
         if (!APIHelper.token || !APIHelper.user || !APIHelper.repo) {
             console.error("Token, user and repo must be set");
