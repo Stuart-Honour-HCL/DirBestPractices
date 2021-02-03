@@ -18,4 +18,8 @@ export default class GitFile{
             return null;
         }
     }
+    
+    pathComponents(): string[]{
+        return this.path.split("/");
+    }
 }

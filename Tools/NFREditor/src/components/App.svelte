@@ -11,6 +11,7 @@
 	import TextEdit from "./TextEdit.svelte";
 	import PopupDialog from "./PopupDialog.svelte";
 	import AuthMenu from "./AuthMenu.svelte";
+	import RepoExporter from "./RepoExporter.svelte";
 
 	let parsed = queryString.parse(location.search);
 
@@ -88,13 +89,21 @@
 	{/if}
 
 	{#if authenticated}
-		{#if currentContents}
-			<!--<Editor /> -->
-			{#if currentContents.type == "file"}
-				<TextEdit currentFile={currentContents.file} {unsavedChanges} />
-			{:else}
-				<GitExplorer {currentContents} />
+		{#if parsed && parsed.page}
+			{#if parsed.page == "export"}
+				<RepoExporter />
+			{:else if parsed.page == "contents" && currentContents}
+				{#if currentContents.type == "file"}
+					<TextEdit
+						currentFile={currentContents.file}
+						{unsavedChanges}
+					/>
+				{:else}
+					<GitExplorer {currentContents} />
+				{/if}
 			{/if}
+		{:else}
+			<RepoExporter />
 		{/if}
 	{:else}
 		<AuthPage />
@@ -162,6 +171,4 @@
 	#menuButton:hover {
 		color: cadetblue;
 	}
-
-
 </style>

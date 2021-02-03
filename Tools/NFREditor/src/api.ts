@@ -1,13 +1,15 @@
 import BestPracticeEntry from "./bestPracticeEntry";
+import Debug from "./debug";
 import GitContents from "./gitContents";
 import GitFile from "./gitFile";
+import Queue from "./queue";
 
 export default class APIHelper {
     static token: string;
     static user: string;
     static repo: string;
 
-    static getContent(path: string): Promise<GitContents>{
+    static getContent(path: string): Promise<GitContents> {
         if (!APIHelper.token || !APIHelper.user || !APIHelper.repo) {
             console.error("Token, user and repo must be set");
         }
@@ -17,12 +19,12 @@ export default class APIHelper {
                 let res = new GitContents();
                 res.path = path;
 
-                if(Array.isArray(content)){
+                if (Array.isArray(content)) {
                     console.log("Read dir:" + path + ". Number of entries: " + content.length);
                     res.type = "dir";
-                    res.dirList = content;              
+                    res.dirList = content;
                 }
-                else{
+                else {
                     console.log("Read file:" + path);
                     if (content.content) {
                         console.log("Content: " + atob(content.content));
@@ -30,8 +32,8 @@ export default class APIHelper {
                     res.type = "file";
                     res.file = content;
                 }
-                resolve(res);                
-               
+                resolve(res);
+
             }).catch(reason => {
                 reject(reason);
             });
@@ -55,7 +57,7 @@ export default class APIHelper {
             });
         });
     }
-    
+
     static createNewFile(path: string): Promise<GitFile> {
         if (!APIHelper.token || !APIHelper.user || !APIHelper.repo) {
             console.error("Token, user and repo must be set");
@@ -78,11 +80,11 @@ export default class APIHelper {
                     reject(reason);
                 });
             });
-          
+
         });
     }
 
-        
+
     static apiGET(endpoint, token): Promise<any> {
         return new Promise<any>((resolve, reject) => {
             fetch(`https://api.github.com/repos/${endpoint}`, {
@@ -108,7 +110,7 @@ export default class APIHelper {
             content: btoa(file.content),
             message: `Updating ${path} at: ${new Date().toTimeString()}`,
             sha: file.sha,
-            path: path           
+            path: path
         };
 
         path = encodeURI(path);
@@ -135,5 +137,32 @@ export default class APIHelper {
 
 
 
+    }
+
+    static scanRepo(startingPath: string, progressUpdate: Function = undefined): Promise<GitFile[]> {
+        return new Promise<GitFile[]>(async (resolve, reject) => {
+            let result: GitFile[] = [];
+
+            let q = new Queue<string>();
+            q.enqueue(startingPath);
+            Debug.log("API - scanRepo");
+            while (q.count() > 0) {
+                let crt = q.dequeue();
+                if(progressUpdate){
+                    progressUpdate(crt);
+                }
+                Debug.log("API - scanRepo - current path: " + crt);
+                let childContents: GitContents = await APIHelper.getContent(crt);
+                if (childContents.type == "file") {
+                    result.push(childContents.file);
+                }
+                else {
+                    childContents.dirList.forEach(element => {
+                        q.enqueue(element.path);
+                    });
+                }
+            }
+            resolve(result);
+        });
     }
 }

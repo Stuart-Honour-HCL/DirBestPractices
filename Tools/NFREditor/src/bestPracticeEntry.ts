@@ -74,6 +74,11 @@ export default class BestPracticeEntry {
             "</body></html>";
         return el;
     }
+    
+    static htmlDecode(input) {
+        var doc = new DOMParser().parseFromString(input, "text/html");
+        return doc.documentElement.textContent;
+    }
 
     /**
      * Converts best practice entry to HTML
