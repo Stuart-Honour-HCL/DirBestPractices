@@ -162,6 +162,9 @@ export default class APIHelper {
                     });
                 }
             }
+
+            let ster = JSON.stringify(result);
+            Debug.log(ster);
             resolve(result);
         });
     }

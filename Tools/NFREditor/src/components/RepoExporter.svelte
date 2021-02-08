@@ -5,6 +5,8 @@
     let progressCurrentPath: string;
     let dataLoading: boolean = false;
     let bpEntries = {};
+    let selectedEntry: BestPracticeEntry;
+    let selectedRows = undefined;
 
     import moment from "moment";
 
@@ -16,6 +18,16 @@
     import GitContents, { ROOT_FOLDER } from "../gitContents";
     import BestPracticeEntry from "../bestPracticeEntry";
     import NFRHelpers from "../helpers";
+
+    import {
+        Button,
+        Modal,
+        ModalBody,
+        ModalFooter,
+        ModalHeader,
+    } from "sveltestrap";
+    let open = false;
+    const toggle = () => (open = !open);
 
     onMount(() => {});
 
@@ -39,13 +51,16 @@
         { title: "File", field: "name" },
         { title: "Title", field: "title" },
         { title: "Size", field: "size" },
-        { title: "Questions", field: "qCount" },
+        { title: "Questions", field: "qCount", bottomCalc: "sum" },
     ];
 
     function progressUpdate(crtPath: string) {
         progressCurrentPath = crtPath;
     }
 
+    /**
+     * Scans whole GitHub repo and generates Tabulator table
+     */
     function scanRepo() {
         progressCurrentPath = "";
         dataLoading = true;
@@ -68,7 +83,57 @@
                     //e - the click event object
                     //row - row component
                     showContents(row);
-                    //row.toggleSelect(); //toggle row selected state on row click
+                    table.deselectRow();
+
+                    row.toggleSelect(); //toggle row selected state on row click
+                    selectedRows = table.getSelectedRows();
+                },
+                rowSelectionChanged: function (data, rows) {
+                    if (table) {
+                        selectedRows = table.getSelectedRows();
+                    }
+                }
+            });
+            dataLoading = false;
+        });
+    }
+
+    /**
+     * Just for testing purposes - to be deleted
+     */
+    function TEST_scanRepo() {
+        progressCurrentPath = "";
+        dataLoading = true;
+        document.getElementById("fileTable").innerHTML = "";
+
+        NFRHelpers.TEST_GetContents().then((json) => {
+            let files: GitFile[] = JSON.parse(json);
+
+            Debug.log("Got " + files.length + " files");
+            table = new Tabulator(document.getElementById("fileTable"), {
+                data: transformFiles(files),
+                columns: columns,
+                movableRows: true,
+                rowMoved: function (row) {
+                    //row - row component
+                },
+                layout: "fitColumns",
+                pagination: "local",
+                paginationSize: 100,
+                selectable: true,
+                rowClick: function (e, row) {
+                    //e - the click event object
+                    //row - row component
+                    showContents(row);
+                    table.deselectRow();
+
+                    row.toggleSelect(); //toggle row selected state on row click
+                    selectedRows = table.getSelectedRows();
+                },
+                rowSelectionChanged: function (data, rows) {
+                    if (table) {
+                        selectedRows = table.getSelectedRows();
+                    }
                 },
             });
             dataLoading = false;
@@ -112,8 +177,10 @@
         let data = row.getData();
         Debug.log("RepoExported - showContents ", data);
         if (data && data.path && bpEntries[data.path]) {
-            document.getElementById("exporterOutput").innerHTML =
-                bpEntries[data.path].descriptionHTML;
+            selectedEntry = bpEntries[data.path];
+            //open = true;
+            /*document.getElementById("exporterOutput").innerHTML =
+                bpEntries[data.path].descriptionHTML;*/
         }
     }
 
@@ -126,6 +193,22 @@
         let res = NFRHelpers.exportSurvey(paths, bpEntries);
         NFRHelpers.downloadFile("survey.json", JSON.stringify(res));
     }
+
+    function showCurrentEntryModal() {
+        open = true;
+    }
+
+    function exportDocument() {
+        let rows = table.getSelectedRows();
+        let paths: string[] = [];
+        rows.forEach((element) => {
+            paths.push(element.getData().path);
+        });
+
+        NFRHelpers.createOutputDocument(paths, bpEntries).then((res) => {
+            NFRHelpers.downloadFile("bestPractices.html", res);
+        });
+    }
 </script>
 
 <div id="exporter">
@@ -133,14 +216,36 @@
         <button type="button" class="btn btn-primary" on:click={scanRepo}
             ><i class="fa fa-search" /> Scan repo</button
         >
-        <button type="button" class="btn btn-primary" on:click={exportSuvey}
+        <button
+            type="button"
+            class="btn btn-primary"
+            disabled={!selectedRows || selectedRows.length == 0}
+            on:click={exportSuvey}
             ><i class="fa fa-list" /> Export survey</button
         >
-        <button type="button" class="btn btn-primary" on:click={scanRepo}
-            ><i class="fa fa-edit" /> Edit entry</button
+        <button
+            type="button"
+            class="btn btn-primary"
+            disabled={!selectedRows || selectedRows.length != 1}
+            on:click={showCurrentEntryModal}
+            ><i class="fa fa-file" /> View entry</button
         >
-        <button type="button" class="btn btn-primary" on:click={scanRepo}
+        <button
+            type="button"
+            class="btn btn-primary"
+            disabled={!selectedRows || selectedRows.length != 1}
+            on:click={scanRepo}><i class="fa fa-edit" /> Edit entry</button
+        >
+        <button
+            type="button"
+            class="btn btn-danger"
+            disabled={!selectedRows || selectedRows.length == 0}
+            on:click={exportDocument}
             ><i class="fa fa-book" /> Export documentation</button
+        >
+
+        <button type="button" class="btn btn-success" on:click={TEST_scanRepo}
+            ><i class="fa fa-book" /> Test - sample repo</button
         >
     </div>
     <div id="exporterStats" />
@@ -155,6 +260,24 @@
         </div>
     </div>
     <div id="exporterOutput" />
+    {#if selectedEntry}
+        <Modal isOpen={open} {toggle} transitionOptions={{}} size={"xl"}>
+            <ModalHeader {toggle}>{@html selectedEntry.titleHTML}</ModalHeader>
+            <ModalBody>
+                {@html selectedEntry.descriptionHTML}
+                <hr />
+                <h3>Questions</h3>
+                <ol>
+                    {#each selectedEntry.surveyQuestions as q, idx}
+                        <li>{q.question}</li>
+                    {/each}
+                </ol>
+            </ModalBody>
+            <ModalFooter>
+                <Button color="secondary" on:click={toggle}>Close</Button>
+            </ModalFooter>
+        </Modal>
+    {/if}
 </div>
 <svelte:head>
     <link href="build/tabulator.min.css" rel="stylesheet" />

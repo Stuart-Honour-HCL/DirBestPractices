@@ -17,14 +17,17 @@
     }
 </script>
 
-<div id="authMenu">
+<div id="authMenu"> 
+    <div id="authControls" class="bm-3">
+        <button  type="button" class="btn btn-info" on:click={(x) => Control.closeMenu()}>Close</button>        
+        <button type="button" class="btn btn-success" on:click="{x => {Control.openMainMenu();Control.closeMenu();}}">Main menu</button>
+        <button   type="button" class="btn btn-danger" on:click={logout}>Log out</button>
+    </div>
+    
     <div id="authInfo">
         Authenticated with token ***** to; https://github.com/{APIHelper.user}/{APIHelper.repo}
     </div>
-    <div id="authControls">
-        <button class="customButton" on:click={(x) => Control.closeMenu()}>Close</button>
-        <button class="customButton" on:click={logout}>Log out</button>
-    </div>
+  
 </div>
 
 <style>

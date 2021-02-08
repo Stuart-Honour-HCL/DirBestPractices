@@ -12,6 +12,7 @@
 	import PopupDialog from "./PopupDialog.svelte";
 	import AuthMenu from "./AuthMenu.svelte";
 	import RepoExporter from "./RepoExporter.svelte";
+	import MainMenu from "./MainMenu.svelte";
 
 	let parsed = queryString.parse(location.search);
 
@@ -33,10 +34,26 @@
 			APIHelper.repo = cookies.nfrGitRepo;
 			authenticated = true;
 
-			if (parsed && parsed.path) {
-				Control.openPath(parsed.path.toString());
-			} else {
-				Control.openPath(ROOT_FOLDER);
+			if (parsed && parsed.page){
+				switch(parsed.page){
+					case "contents":
+						if(parsed.path){
+							Control.openPath(parsed.path.toString());
+						}
+						else{
+							Control.openPath(ROOT_FOLDER);
+						}
+					break;
+					case "export":
+						Control.openExporter();
+						break;
+					default:
+						Control.openMainMenu();
+					break;
+				}
+			} 
+			else {
+				Control.openMainMenu();
 			}
 		} else {
 			authenticated = false;
@@ -76,6 +93,9 @@
 			case "closeMenu":
 				menuOpen = false;
 				break;
+			case "queryStringChanged":
+				parsed = queryString.parse(location.search);
+				break;
 		}
 	});
 
@@ -92,6 +112,8 @@
 		{#if parsed && parsed.page}
 			{#if parsed.page == "export"}
 				<RepoExporter />
+			{:else if parsed.page == "mainmenu"}
+				<MainMenu />
 			{:else if parsed.page == "contents" && currentContents}
 				{#if currentContents.type == "file"}
 					<TextEdit
@@ -103,7 +125,7 @@
 				{/if}
 			{/if}
 		{:else}
-			<RepoExporter />
+			<MainMenu />
 		{/if}
 	{:else}
 		<AuthPage />

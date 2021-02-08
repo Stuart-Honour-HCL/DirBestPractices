@@ -54,6 +54,7 @@ export default class Control {
     static setQueryString(obj: any) {
         const stringified = queryString.stringify(obj);
         window.history.pushState({}, '', `${window.origin}?${stringified}`);
+        this.stateChange.update(c => new Control("queryStringChanged"));
     }
 
     static initOnPopState() {
@@ -71,13 +72,20 @@ export default class Control {
 
         APIHelper.getContent(path).then(contents => {
             if (updateQueryString) {
-                this.setQueryString({ path: path });
+                this.setQueryString({ path: path, page: "contents" });
             }
             Control.currentContents = contents; 
 
             this.stateChange.update(c => new Control("pathChanged"));
         });
 
+    }
+
+    static openExporter() { 
+        this.setQueryString({ page: "export" });            
+    }
+    static openMainMenu() { 
+        this.setQueryString({ page: "mainmenu" });            
     }
 
 }
