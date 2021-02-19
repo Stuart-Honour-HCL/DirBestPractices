@@ -3,6 +3,7 @@ import Debug from "./debug";
 import GitContents from "./gitContents";
 import GitFile from "./gitFile";
 import Queue from "./queue";
+import { encode, decode } from 'js-base64';
 
 export default class APIHelper {
     static token: string;
@@ -27,7 +28,7 @@ export default class APIHelper {
                 else {
                     console.log("Read file:" + path);
                     if (content.content) {
-                        console.log("Content: " + atob(content.content));
+                        console.log("Content: " + decode(content.content));
                     }
                     res.type = "file";
                     res.file = content;
@@ -107,7 +108,7 @@ export default class APIHelper {
     static apiPUT(user: string, repository: string, path: string, token, file: GitFile): Promise<Object> {
 
         let body = {
-            content: btoa(file.content),
+            content: encode(file.content),
             message: `Updating ${path} at: ${new Date().toTimeString()}`,
             sha: file.sha,
             path: path
