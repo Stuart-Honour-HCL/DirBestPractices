@@ -48,7 +48,7 @@
             width: 30,
         },
         { title: "NFR", field: "nfr" },
-        { title: "File", field: "name" },
+        { title: "File", field: "name", bottomCalc: "count" },
         { title: "Title", field: "title" },
         { title: "Size", field: "size" },
         { title: "Questions", field: "qCount", bottomCalc: "sum" },

@@ -38400,7 +38400,7 @@ var app = (function () {
     			p = element("p");
     			t0 = text("Loading... ");
     			t1 = text(/*progressCurrentPath*/ ctx[0]);
-    			add_location(p, file$f, 226, 16, 7652);
+    			add_location(p, file$f, 226, 16, 7673);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -38531,7 +38531,7 @@ var app = (function () {
     		c: function create() {
     			li = element("li");
     			t = text(t_value);
-    			add_location(li, file$f, 243, 24, 8317);
+    			add_location(li, file$f, 243, 24, 8338);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -38589,9 +38589,9 @@ var app = (function () {
     			}
 
     			html_tag = new HtmlTag(t0);
-    			add_location(hr, file$f, 239, 16, 8158);
-    			add_location(h3, file$f, 240, 16, 8182);
-    			add_location(ol, file$f, 241, 16, 8218);
+    			add_location(hr, file$f, 239, 16, 8179);
+    			add_location(h3, file$f, 240, 16, 8203);
+    			add_location(ol, file$f, 241, 16, 8239);
     		},
     		m: function mount(target, anchor) {
     			html_tag.m(raw_value, target, anchor);
@@ -38940,59 +38940,59 @@ var app = (function () {
     			t17 = space();
     			link = element("link");
     			attr_dev(i0, "class", "fa fa-search");
-    			add_location(i0, file$f, 188, 13, 6259);
+    			add_location(i0, file$f, 188, 13, 6280);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "btn btn-primary");
-    			add_location(button0, file$f, 187, 8, 6179);
+    			add_location(button0, file$f, 187, 8, 6200);
     			attr_dev(i1, "class", "fa fa-list");
-    			add_location(i1, file$f, 195, 13, 6512);
+    			add_location(i1, file$f, 195, 13, 6533);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "btn btn-primary");
     			button1.disabled = button1_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length == 0;
-    			add_location(button1, file$f, 190, 8, 6324);
+    			add_location(button1, file$f, 190, 8, 6345);
     			attr_dev(i2, "class", "fa fa-file");
-    			add_location(i2, file$f, 202, 13, 6777);
+    			add_location(i2, file$f, 202, 13, 6798);
     			attr_dev(button2, "type", "button");
     			attr_dev(button2, "class", "btn btn-primary");
     			button2.disabled = button2_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length != 1;
-    			add_location(button2, file$f, 197, 8, 6579);
+    			add_location(button2, file$f, 197, 8, 6600);
     			attr_dev(i3, "class", "fa fa-edit");
-    			add_location(i3, file$f, 208, 32, 7012);
+    			add_location(i3, file$f, 208, 32, 7033);
     			attr_dev(button3, "type", "button");
     			attr_dev(button3, "class", "btn btn-primary");
     			button3.disabled = button3_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length != 1;
-    			add_location(button3, file$f, 204, 8, 6841);
+    			add_location(button3, file$f, 204, 8, 6862);
     			attr_dev(i4, "class", "fa fa-book");
-    			add_location(i4, file$f, 215, 13, 7266);
+    			add_location(i4, file$f, 215, 13, 7287);
     			attr_dev(button4, "type", "button");
     			attr_dev(button4, "class", "btn btn-danger");
     			button4.disabled = button4_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length == 0;
-    			add_location(button4, file$f, 210, 8, 7076);
+    			add_location(button4, file$f, 210, 8, 7097);
     			attr_dev(i5, "class", "fa fa-book");
-    			add_location(i5, file$f, 219, 13, 7427);
+    			add_location(i5, file$f, 219, 13, 7448);
     			attr_dev(button5, "type", "button");
     			attr_dev(button5, "class", "btn btn-success");
-    			add_location(button5, file$f, 218, 8, 7342);
+    			add_location(button5, file$f, 218, 8, 7363);
     			attr_dev(div0, "id", "exporterControls");
-    			add_location(div0, file$f, 186, 4, 6142);
+    			add_location(div0, file$f, 186, 4, 6163);
     			attr_dev(div1, "id", "exporterStats");
-    			add_location(div1, file$f, 222, 4, 7507);
-    			add_location(p, file$f, 229, 16, 7762);
+    			add_location(div1, file$f, 222, 4, 7528);
+    			add_location(p, file$f, 229, 16, 7783);
     			attr_dev(div2, "id", "fileTable");
-    			add_location(div2, file$f, 228, 12, 7724);
+    			add_location(div2, file$f, 228, 12, 7745);
     			attr_dev(div3, "id", "exporterSelTable");
-    			add_location(div3, file$f, 224, 8, 7576);
+    			add_location(div3, file$f, 224, 8, 7597);
     			attr_dev(div4, "id", "exporterSelector");
     			attr_dev(div4, "class", "svelte-7hv2ma");
-    			add_location(div4, file$f, 223, 4, 7539);
+    			add_location(div4, file$f, 223, 4, 7560);
     			attr_dev(div5, "id", "exporterOutput");
-    			add_location(div5, file$f, 233, 4, 7852);
+    			add_location(div5, file$f, 233, 4, 7873);
     			attr_dev(div6, "id", "exporter");
     			attr_dev(div6, "class", "svelte-7hv2ma");
-    			add_location(div6, file$f, 185, 0, 6117);
+    			add_location(div6, file$f, 185, 0, 6138);
     			attr_dev(link, "href", "build/tabulator.min.css");
     			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$f, 254, 4, 8605);
+    			add_location(link, file$f, 254, 4, 8626);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -39170,7 +39170,11 @@ var app = (function () {
     			width: 30
     		},
     		{ title: "NFR", field: "nfr" },
-    		{ title: "File", field: "name" },
+    		{
+    			title: "File",
+    			field: "name",
+    			bottomCalc: "count"
+    		},
     		{ title: "Title", field: "title" },
     		{ title: "Size", field: "size" },
     		{
