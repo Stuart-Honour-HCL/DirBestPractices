@@ -1,10 +1,66 @@
 <div class="bestPracticeEntry">
   <div class="tags">
-    <div class="tag"></div>
+    <div class="tag">azure</div>
+    <div class="tag"> Application Insights</div>
   </div>
-  <div class="title">Sending logs to Application Insights</div>
+  <div class="title">Sending additional logs to Azure Monitor</div>
   <div class="description">
-    <p>&nbsp;<br></p>
+    <p>Azure Functions offers built-in integration with Azure Application Insights to monitor functions. The ILogger object is made available through <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection" target="_blank">dependency injection</a>.</p>
+    <p>By default, Azure Functions send errors to Application Insights and any unhandled exception together with its call stack will be visible. However, more context may be needed to understand why an exception occurred, so additional logging should be added by the developer to expose the values of variables that may help in troubleshooting (e.g. the URL&nbsp;that was accessed prior to an HTTP error). Proper&nbsp;<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-monitoring#log-levels-and-categories">log levels</a>&nbsp;should be selected when making the call to the ILogger log function:</p>
+    <p><br></p>
+    <table class="table" style="box-sizing: inherit; border-collapse: collapse; border-spacing: 0px; outline-color: inherit; table-layout: auto; width: 940.741px; font-size: 0.875rem; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+      <thead style="box-sizing: inherit; outline-color: inherit;">
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">LogLevel</th>
+          <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">Code</th>
+          <th style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-width: 0px 0px 1px; border-color: initial; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: solid;">Description</th>
+        </tr>
+      </thead>
+      <tbody style="box-sizing: inherit; outline-color: inherit;">
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Trace</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">0</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.</td>
+        </tr>
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Debug</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">1</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Logs that are used for interactive investigation during development. These logs should primarily contain information useful for debugging and have no long-term value.</td>
+        </tr>
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Information</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">2</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Logs that track the general flow of the application. These logs should have long-term value.</td>
+        </tr>
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Warning</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">3</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Logs that highlight an abnormal or unexpected event in the application flow, but don't otherwise cause the application execution to stop.</td>
+        </tr>
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Error</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">4</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Logs that highlight when the current flow of execution is stopped because of a failure. These errors should indicate a failure in the current activity, not an application-wide failure.</td>
+        </tr>
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Critical</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">5</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires immediate attention.</td>
+        </tr>
+        <tr style="box-sizing: inherit; outline-color: inherit;">
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">None</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">6</td>
+          <td style="box-sizing: inherit; padding: 0.75rem 1rem; outline-color: inherit; text-align: left; display: table-cell; overflow-wrap: break-word; line-height: 1.5; vertical-align: top; border-top-width: ; border-top-color: ; border-right: 0px solid; border-left: 0px solid; border-bottom: 0px solid; border-top-style: solid;">Disables logging for the specified category.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><br></p>
   </div>
-  <div class="survey"></div>
+  <div class="survey">
+    <div class="surveyQuestion">
+      <div class="text">Are relevant values and caught exceptions sent with the proper log level to Azure Monitor?</div>
+      <div class="measurement">Manual - code review</div>
+      <div class="target">Yes</div>
+    </div>
+  </div>
 </div>

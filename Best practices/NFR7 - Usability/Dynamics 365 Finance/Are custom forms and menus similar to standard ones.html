@@ -1,12 +1,28 @@
 <div class="bestPracticeEntry">
-    <div class="tags">
-        <span>development</span>
-        <span>Azure</span>
+  <div class="tags">
+    <div class="tag">X++</div>
+  </div>
+  <div class="title">Custom forms and menus should be similar to standard ones</div>
+  <div class="description">
+
+
+    <p>New forms developed in D365FO should have a similar UI to existing ones. This is enforced through&nbsp;<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/user-interface/form-styles-patterns" target="_blank">Form patterns</a>, which provide a standard structure and a minimal list of controls.</p>
+
+
+    <p>The Form Patterns report, which can be extracted from a DEV environment using&nbsp;Visual Studio, can help identify the pattern used by&nbsp;standard forms with similar functionality. See&nbsp;<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/user-interface/select-form-pattern" target="_blank">the Microsoft documentation</a>&nbsp;for a list of form patterns.</p>
+    <p>Similarly, newly created menu items should be placed in the appropriate section: <strong>Workspaces</strong>,<strong> Inquiries and reports</strong>, <strong>Periodic tasks</strong>, <strong>Setup</strong>, etc. The development environment doesn't enforce such a structure, so the developers and functional designers are responsible to choosing a logical menu structure.</p>
+    <p><br></p>
+  </div>
+  <div class="survey">
+    <div class="surveyQuestion">
+      <div class="text">Are custom forms using patterns similar to standard ones?</div>
+      <div class="measurement">Manual - Code review</div>
+      <div class="target">Yes</div>
     </div>
-    <div class="title">
-        Exposing Application insights from D365 F&SCM
+    <div class="surveyQuestion">
+      <div class="text">Are custom menu items arranged in categories similar to standard ones?</div>
+      <div class="measurement">Manual - Code review</div>
+      <div class="target">Yes</div>
     </div>
-    <div class="description">
-        
-    </div>
+  </div>
 </div>
