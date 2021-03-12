@@ -1,11 +1,18 @@
 <div class="bestPracticeEntry">
   <div class="tags">
-    <div class="tag"></div>
+    <div class="tag">Azure</div>
+    <div class="tag"> Logic Apps</div>
   </div>
-  <div class="title">Exposing Application insights from D365 F&amp;SCM
-  </div>
+  <div class="title">Using child Logic Apps</div>
   <div class="description">
-    <p>zxc</p>
+    <p>Just like in C# source code it's better to move code sections that appear multiple times into separate functions, in Logic Apps, repeated sequences of actions can be moved to a child Logic App.</p>
+    <p>Using child Logic Apps for repeated actions also makes the whole solution easier to test. Another advantage is avoiding nested loops, which will run sequentially rather than in parallel unless move to a child Logic App.</p>
   </div>
-  <div class="survey"></div>
+  <div class="survey">
+    <div class="surveyQuestion">
+      <div class="text">Are Logic Apps using repeated action sequences that could be moved to child Logic Apps?</div>
+      <div class="measurement">Manual - code review</div>
+      <div class="target">No</div>
+    </div>
+  </div>
 </div>
