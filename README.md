@@ -1,6 +1,7 @@
 # DirBestPractices
 # Best Practices. Together
 Best practices repository for Dynamics 365 for Finance and Supply Chain Management (aka MSDyn365FO), HR, Azure integrations
+
 [Test site](https://nfreditor.z33.web.core.windows.net)
 	
 ## Etiquette:
