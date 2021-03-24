@@ -1,0 +1,80 @@
+<div class="bestPracticeEntry">
+  <div class="tags">
+    <div class="tag">X++</div>
+  </div>
+  <div class="title">Naming conventions for X++ code</div>
+  <div class="description">
+    <p>Please follow the <a href="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/naming-conventions" target="_blank">Microsoft naming conventions</a> for new&nbsp;AOT objects:</p>
+    <p><br></p>
+    <ul style="box-sizing: inherit; margin: 16px 0px 16px 38px; padding: 0px; list-style: none; outline-color: inherit; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">All names must be in U.S. English.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">The default rule is to use logical and descriptive names if no other specialized rules apply.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Identifier names have a limit of 40 characters.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Names in the Application Object Tree (AOT) and in X++ code must correspond to the names in the U.S. English user interface.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Names must be spelled correctly.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Names must be used consistently.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Each path in the AOT must be unique; nodes must not have identical names.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">All texts that appear in the user interface must be defined by using a label. (This rule applies only if you want your solution certified as an international solution.)</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Do not begin a name with "aaa", or "CopyOf". Do not begin a name with "DEL_" unless it is a table, extended data type or enum, and it is needed for data upgrade purposes. Names that use these prefixes cause a best practices error when you check the objects into the version control system.<img src="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/images/aa872655.erroricon(ax.60).gif" alt="Error icon" title="Error icon" data-linktype="relative-path" style="box-sizing: inherit; border: 0px; height: auto; max-width: 100%; outline-color: inherit; display: inline-block; vertical-align: baseline;"></p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">We do not support an EDT with the same name as a Table, EDT, Base Enum, or Class.</p>
+      </li>
+    </ul>
+    <p><br></p>
+    <p><br></p>
+    <p>Please note the <a href="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/naming-conventions-underscores" target="_blank">additional rules for using underscores</a>:</p>
+    <p><br></p>
+    <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">The underscore character ('_') can be used in the following situations.</p>
+    <ul style="box-sizing: inherit; margin: 16px 0px 16px 38px; padding: 0px; list-style: none; outline-color: inherit; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 16px;">
+      <li style="font-size: 16px; box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><span style="font-size: 16px;">When naming </span><strong>formal parameters</strong><span style="font-size: 16px;">, it should be used as the first character.</span><span style="font-size: 16px;">&nbsp;</span><span style="font-size: 16px; box-sizing: inherit; border-style: initial; border-color: initial; border-image: initial; height: auto; outline-color: inherit;"><img src="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/images/aa658028.warningicon(en-us,ax.60).gif" alt="Warning icon" title="Warning icon" data-linktype="relative-path" style="box-sizing: inherit; border: 0px; height: auto; max-width: 100%; outline-color: inherit; display: inline-block; vertical-align: baseline;"></span></p>
+      </li>
+      <li style="font-size: 16px; box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><span style="font-size: 16px;">In the</span><span style="font-size: 16px;">&nbsp;</span><a href="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/naming-conventions-prefixes" data-linktype="relative-path" style="box-sizing: inherit; background-color: transparent; outline-color: inherit; color: var(--theme-primary-base); cursor: pointer; text-decoration: none; overflow-wrap: break-word; outline-style: initial; outline-width: 0px;"><strong>DEL_ </strong><span style="font-size: 16px;">prefix</span></a><span style="font-size: 16px;">.</span></p>
+      </li>
+      <li style="font-size: 16px; box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><strong>Subclasses </strong><span style="font-size: 16px;">can have the same name as their parent class, postfixed with a logical name that describes the subclass specialization. The name of the parent class might have to be shortened. In this case, use an underscore between the shortened parent class name, and the rest of the name. For example: InventUpd_Financial, InventUpd_Physical.</span></p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc; font-size: 16px;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;"><span style="font-size: 16px;">In an application object that is </span><strong>specialized for a specific country/region</strong><span style="font-size: 16px;">, the name is postfixed with underscore and the country/region code. For example: TaxReport_BE, LedgerJournalizeTrans_ES.</span></p>
+      </li>
+    </ul>
+    <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-size: 16px;"><strong>Do not </strong><span style="font-size: 16px;">use an underscore in the following situations:</span></p>
+    <ul style="box-sizing: inherit; margin: 16px 0px 16px 38px; padding: 0px; list-style: none; outline-color: inherit; color: rgb(23, 23, 23); font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">Beginning of an application object name.</p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">First character of a variable name in class declarations or methods.<span>&nbsp;</span><img src="https://docs.microsoft.com/en-us/dynamicsax-2012/developer/images/aa658028.warningicon(en-us,ax.60).gif" alt="Warning icon" title="Warning icon" data-linktype="relative-path" style="box-sizing: inherit; border: 0px; height: auto; max-width: 100%; outline-color: inherit; display: inline-block; vertical-align: baseline;"></p>
+      </li>
+      <li style="box-sizing: inherit; margin: 0px; padding: 0px; outline-color: inherit; outline-style: initial; outline-width: 0px; list-style: outside none disc;">
+        <p style="box-sizing: inherit; margin: 1rem 0px 0px; padding: 0px; outline-color: inherit; overflow-wrap: break-word;">End of a variable name in class declarations or methods.</p>
+      </li>
+    </ul>&nbsp;<p><br></p>
+  </div>
+  <div class="survey">
+    <div class="surveyQuestion">
+      <div class="text">Are AOT and variable names following naming conventions?</div>
+      <div class="measurement">Manual - Code review (can be automated)</div>
+      <div class="target">Yes</div>
+    </div>
+  </div>
+</div>

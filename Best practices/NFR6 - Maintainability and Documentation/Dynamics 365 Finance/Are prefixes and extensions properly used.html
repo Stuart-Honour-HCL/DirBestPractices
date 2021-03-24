@@ -1,12 +1,32 @@
 <div class="bestPracticeEntry">
-    <div class="tags">
-        <span>development</span>
-        <span>Azure</span>
+  <div class="tags">
+    <div class="tag">X++</div>
+  </div>
+  <div class="title">Using prefixes and extensions</div>
+  <div class="description">
+    <p>Use a client-specific three-letter prefix when naming any new AOT objects (i.e. Tables, Classes, Data entities, etc.). The prefix needs to be agreed at the start of the project.</p>
+    <p>As an example, if the agreed project prefix is <strong>ABC </strong>and we're creating a new table labeled <strong>Weather history</strong>, the AOT name should be: <strong>ABCWeatherHistory</strong>.&nbsp;</p>
+    <p><br></p>
+    <p>When extending a table, you need to change the default extension name, ".extension", to something unique. That is because a table can be extended from multiple modules, so each developer much choose a different extension name.</p>
+    <p> A good choice is to use the same prefix used on the client's project and also the functional area. As an example, when extending CustTable from the functional part about weather of project ABC, the extension name should be: <strong>CustTable.ABCWeather</strong>.&nbsp;</p>
+    <p>More info in Simon Buxton's book,&nbsp;<a href="https://www.amazon.co.uk/dp/B01K6VVBY6/ref=dp-kindle-redirect?_encoding=UTF8&amp;btkr=1" target="_blank">Extending Microsoft Dynamics 365 for Operations Cookbook: Create and extend realworld solutions using Dynamics 365 Operations</a>.</p>
+    <p><br></p>
+  </div>
+  <div class="survey">
+    <div class="surveyQuestion">
+      <div class="text">Has an AOT prefix been agreed with the client?</div>
+      <div class="measurement">Manual - project review</div>
+      <div class="target">Yes</div>
     </div>
-    <div class="title">
-        Exposing Application insights from D365 F&SCM
+    <div class="surveyQuestion">
+      <div class="text">Are all new AOT objects using the agreed prefix?</div>
+      <div class="measurement">Manual - code review</div>
+      <div class="target">Yes</div>
     </div>
-    <div class="description">
-        
+    <div class="surveyQuestion">
+      <div class="text">Are extensions using a unique name that includes project prefix and functional area?</div>
+      <div class="measurement">Manual - code review</div>
+      <div class="target">Yes</div>
     </div>
+  </div>
 </div>

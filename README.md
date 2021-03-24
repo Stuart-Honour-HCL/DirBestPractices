@@ -2,6 +2,7 @@
 # Best Practices. Together
 Best practices repository for Dynamics 365 for Finance and Supply Chain Management (aka MSDyn365FO), HR, Azure integrations
 
+[Test site](https://nfreditor.z33.web.core.windows.net)
 	
 ## Etiquette:
 1. **Always say why** - Explain why something is best practice. Ensure the [five whys](https://en.wikipedia.org/wiki/Five_whys) are either stated explictly or easily deducible. Ensure the link to project goals is provided (see [wiki](https://github.com/Costin-hcl/DirBestPractices/wiki) for matrix). See section *Why the current HTML format in GitHub repo was chosen?* as an example.
