@@ -38389,7 +38389,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (226:12) {#if dataLoading}
+    // (228:12) {#if dataLoading}
     function create_if_block_1$6(ctx) {
     	let p;
     	let t0;
@@ -38400,7 +38400,7 @@ var app = (function () {
     			p = element("p");
     			t0 = text("Loading... ");
     			t1 = text(/*progressCurrentPath*/ ctx[0]);
-    			add_location(p, file$f, 226, 16, 7673);
+    			add_location(p, file$f, 228, 16, 7847);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -38419,14 +38419,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$6.name,
     		type: "if",
-    		source: "(226:12) {#if dataLoading}",
+    		source: "(228:12) {#if dataLoading}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (235:4) {#if selectedEntry}
+    // (237:4) {#if selectedEntry}
     function create_if_block$8(ctx) {
     	let modal;
     	let current;
@@ -38479,14 +38479,14 @@ var app = (function () {
     		block,
     		id: create_if_block$8.name,
     		type: "if",
-    		source: "(235:4) {#if selectedEntry}",
+    		source: "(237:4) {#if selectedEntry}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (237:12) <ModalHeader {toggle}>
+    // (239:12) <ModalHeader {toggle}>
     function create_default_slot_4(ctx) {
     	let html_tag;
     	let raw_value = /*selectedEntry*/ ctx[2].titleHTML + "";
@@ -38514,14 +38514,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(237:12) <ModalHeader {toggle}>",
+    		source: "(239:12) <ModalHeader {toggle}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (243:20) {#each selectedEntry.surveyQuestions as q, idx}
+    // (245:20) {#each selectedEntry.surveyQuestions as q, idx}
     function create_each_block$2(ctx) {
     	let li;
     	let t_value = /*q*/ ctx[17].question + "";
@@ -38531,7 +38531,7 @@ var app = (function () {
     		c: function create() {
     			li = element("li");
     			t = text(t_value);
-    			add_location(li, file$f, 243, 24, 8338);
+    			add_location(li, file$f, 245, 24, 8512);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -38549,14 +38549,14 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(243:20) {#each selectedEntry.surveyQuestions as q, idx}",
+    		source: "(245:20) {#each selectedEntry.surveyQuestions as q, idx}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (238:12) <ModalBody>
+    // (240:12) <ModalBody>
     function create_default_slot_3(ctx) {
     	let html_tag;
     	let raw_value = /*selectedEntry*/ ctx[2].descriptionHTML + "";
@@ -38589,9 +38589,9 @@ var app = (function () {
     			}
 
     			html_tag = new HtmlTag(t0);
-    			add_location(hr, file$f, 239, 16, 8179);
-    			add_location(h3, file$f, 240, 16, 8203);
-    			add_location(ol, file$f, 241, 16, 8239);
+    			add_location(hr, file$f, 241, 16, 8353);
+    			add_location(h3, file$f, 242, 16, 8377);
+    			add_location(ol, file$f, 243, 16, 8413);
     		},
     		m: function mount(target, anchor) {
     			html_tag.m(raw_value, target, anchor);
@@ -38649,14 +38649,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(238:12) <ModalBody>",
+    		source: "(240:12) <ModalBody>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (249:16) <Button color="secondary" on:click={toggle}>
+    // (251:16) <Button color="secondary" on:click={toggle}>
     function create_default_slot_2$1(ctx) {
     	let t;
 
@@ -38676,14 +38676,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(249:16) <Button color=\\\"secondary\\\" on:click={toggle}>",
+    		source: "(251:16) <Button color=\\\"secondary\\\" on:click={toggle}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (248:12) <ModalFooter>
+    // (250:12) <ModalFooter>
     function create_default_slot_1$3(ctx) {
     	let button;
     	let current;
@@ -38734,14 +38734,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$3.name,
     		type: "slot",
-    		source: "(248:12) <ModalFooter>",
+    		source: "(250:12) <ModalFooter>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (236:8) <Modal isOpen={open} {toggle} transitionOptions={{}} size={"xl"}>
+    // (238:8) <Modal isOpen={open} {toggle} transitionOptions={{}} size={"xl"}>
     function create_default_slot$3(ctx) {
     	let modalheader;
     	let t0;
@@ -38840,7 +38840,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(236:8) <Modal isOpen={open} {toggle} transitionOptions={{}} size={\\\"xl\\\"}>",
+    		source: "(238:8) <Modal isOpen={open} {toggle} transitionOptions={{}} size={\\\"xl\\\"}>",
     		ctx
     	});
 
@@ -38940,59 +38940,59 @@ var app = (function () {
     			t17 = space();
     			link = element("link");
     			attr_dev(i0, "class", "fa fa-search");
-    			add_location(i0, file$f, 188, 13, 6280);
+    			add_location(i0, file$f, 190, 13, 6454);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "btn btn-primary");
-    			add_location(button0, file$f, 187, 8, 6200);
+    			add_location(button0, file$f, 189, 8, 6374);
     			attr_dev(i1, "class", "fa fa-list");
-    			add_location(i1, file$f, 195, 13, 6533);
+    			add_location(i1, file$f, 197, 13, 6707);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "btn btn-primary");
     			button1.disabled = button1_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length == 0;
-    			add_location(button1, file$f, 190, 8, 6345);
+    			add_location(button1, file$f, 192, 8, 6519);
     			attr_dev(i2, "class", "fa fa-file");
-    			add_location(i2, file$f, 202, 13, 6798);
+    			add_location(i2, file$f, 204, 13, 6972);
     			attr_dev(button2, "type", "button");
     			attr_dev(button2, "class", "btn btn-primary");
     			button2.disabled = button2_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length != 1;
-    			add_location(button2, file$f, 197, 8, 6600);
+    			add_location(button2, file$f, 199, 8, 6774);
     			attr_dev(i3, "class", "fa fa-edit");
-    			add_location(i3, file$f, 208, 32, 7033);
+    			add_location(i3, file$f, 210, 32, 7207);
     			attr_dev(button3, "type", "button");
     			attr_dev(button3, "class", "btn btn-primary");
     			button3.disabled = button3_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length != 1;
-    			add_location(button3, file$f, 204, 8, 6862);
+    			add_location(button3, file$f, 206, 8, 7036);
     			attr_dev(i4, "class", "fa fa-book");
-    			add_location(i4, file$f, 215, 13, 7287);
+    			add_location(i4, file$f, 217, 13, 7461);
     			attr_dev(button4, "type", "button");
     			attr_dev(button4, "class", "btn btn-danger");
     			button4.disabled = button4_disabled_value = !/*selectedRows*/ ctx[3] || /*selectedRows*/ ctx[3].length == 0;
-    			add_location(button4, file$f, 210, 8, 7097);
+    			add_location(button4, file$f, 212, 8, 7271);
     			attr_dev(i5, "class", "fa fa-book");
-    			add_location(i5, file$f, 219, 13, 7448);
+    			add_location(i5, file$f, 221, 13, 7622);
     			attr_dev(button5, "type", "button");
     			attr_dev(button5, "class", "btn btn-success");
-    			add_location(button5, file$f, 218, 8, 7363);
+    			add_location(button5, file$f, 220, 8, 7537);
     			attr_dev(div0, "id", "exporterControls");
-    			add_location(div0, file$f, 186, 4, 6163);
+    			add_location(div0, file$f, 188, 4, 6337);
     			attr_dev(div1, "id", "exporterStats");
-    			add_location(div1, file$f, 222, 4, 7528);
-    			add_location(p, file$f, 229, 16, 7783);
+    			add_location(div1, file$f, 224, 4, 7702);
+    			add_location(p, file$f, 231, 16, 7957);
     			attr_dev(div2, "id", "fileTable");
-    			add_location(div2, file$f, 228, 12, 7745);
+    			add_location(div2, file$f, 230, 12, 7919);
     			attr_dev(div3, "id", "exporterSelTable");
-    			add_location(div3, file$f, 224, 8, 7597);
+    			add_location(div3, file$f, 226, 8, 7771);
     			attr_dev(div4, "id", "exporterSelector");
     			attr_dev(div4, "class", "svelte-7hv2ma");
-    			add_location(div4, file$f, 223, 4, 7560);
+    			add_location(div4, file$f, 225, 4, 7734);
     			attr_dev(div5, "id", "exporterOutput");
-    			add_location(div5, file$f, 233, 4, 7873);
+    			add_location(div5, file$f, 235, 4, 8047);
     			attr_dev(div6, "id", "exporter");
     			attr_dev(div6, "class", "svelte-7hv2ma");
-    			add_location(div6, file$f, 185, 0, 6138);
+    			add_location(div6, file$f, 187, 0, 6312);
     			attr_dev(link, "href", "build/tabulator.min.css");
     			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$f, 254, 4, 8626);
+    			add_location(link, file$f, 256, 4, 8800);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -39169,18 +39169,32 @@ var app = (function () {
     			headerSort: false,
     			width: 30
     		},
-    		{ title: "NFR", field: "nfr" },
+    		{
+    			title: "NFR",
+    			field: "nfr",
+    			headerFilter: true
+    		},
+    		{
+    			title: "Product",
+    			field: "prod",
+    			headerFilter: true
+    		},
     		{
     			title: "File",
     			field: "name",
     			bottomCalc: "count"
     		},
-    		{ title: "Title", field: "title" },
+    		{
+    			title: "Title",
+    			field: "title",
+    			headerFilter: true
+    		},
     		{ title: "Size", field: "size" },
     		{
     			title: "Questions",
     			field: "qCount",
-    			bottomCalc: "sum"
+    			bottomCalc: "sum",
+    			headerFilter: true
     		}
     	];
 
@@ -39290,6 +39304,7 @@ var app = (function () {
     				crt.sha = f.sha;
     				crt.content = atob(f.content);
     				crt["nfr"] = crt.pathComponents()[1];
+    				crt["prod"] = crt.pathComponents()[2];
     				crt["size"] = crt.content.length;
     				let bpe = new BestPracticeEntry(crt.content);
     				crt["qCount"] = bpe.surveyQuestions.length;

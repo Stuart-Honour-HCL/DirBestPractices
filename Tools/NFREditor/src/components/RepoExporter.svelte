@@ -47,11 +47,12 @@
             headerSort: false,
             width: 30,
         },
-        { title: "NFR", field: "nfr" },
+        { title: "NFR", field: "nfr", headerFilter:true },
+        { title: "Product", field: "prod", headerFilter:true },
         { title: "File", field: "name", bottomCalc: "count" },
-        { title: "Title", field: "title" },
+        { title: "Title", field: "title", headerFilter:true },
         { title: "Size", field: "size" },
-        { title: "Questions", field: "qCount", bottomCalc: "sum" },
+        { title: "Questions", field: "qCount", bottomCalc: "sum", headerFilter:true },
     ];
 
     function progressUpdate(crtPath: string) {
@@ -152,6 +153,7 @@
                 crt.sha = f.sha;
                 crt.content = atob(f.content);
                 crt["nfr"] = crt.pathComponents()[1];
+                crt["prod"] = crt.pathComponents()[2];
                 crt["size"] = crt.content.length;
 
                 let bpe = new BestPracticeEntry(crt.content);
