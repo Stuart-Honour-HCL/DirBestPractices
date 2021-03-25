@@ -1664,6 +1664,9 @@ var app = (function () {
         pathComponents() {
             return this.path.split("/");
         }
+        static pathComponentsOfPath(path) {
+            return path.split("/");
+        }
     }
 
     class GitFile {
@@ -35715,6 +35718,82 @@ var app = (function () {
             document.body.removeChild(element);
         }
         static createOutputDocument(paths, data) {
+            return new Promise((resolve, reject) => {
+                fetch("outputDocumentStyled.html").then(resp => {
+                    resp.text().then(content => {
+                        var el = document.createElement("html");
+                        el.innerHTML = content;
+                        let nav = el.querySelector("#navbarSupportedContent");
+                        let sectionParent = el.querySelector("#docMainContent");
+                        let firstPageTemplate = el.querySelector("#firstPage").innerHTML; // Used for each NFR
+                        let bpEntryTemplate = el.querySelector(".nfr-bp-entry").innerHTML; // Used for each BP entry                    
+                        let existingLinks = nav.getElementsByTagName("li");
+                        let listEntry = existingLinks[1].innerHTML;
+                        let ul = existingLinks[0].parentElement;
+                        ul.innerHTML = "";
+                        sectionParent.innerHTML = "";
+                        // Add first page
+                        let firstPage = document.createElement("section");
+                        firstPage.innerHTML = firstPageTemplate;
+                        firstPage.classList.add("resume-section");
+                        let exportTime = firstPage.querySelector(".subheading");
+                        exportTime.innerHTML = (new Date()).toDateString();
+                        sectionParent.appendChild(firstPage);
+                        //Get full list of NFRs and lists of best practices grouped by NFRs in entriesForNFR
+                        let list = [];
+                        let entriesForNFR = {};
+                        paths.forEach(p => {
+                            let parts = GitContents.pathComponentsOfPath(p);
+                            if (!list.includes(parts[1])) {
+                                list.push(parts[1]);
+                                entriesForNFR[parts[1]] = new Array();
+                            }
+                            entriesForNFR[parts[1]].push(p);
+                        });
+                        list.sort();
+                        // Create sections based on list of NFRs
+                        for (let i = 0; i < list.length; ++i) {
+                            let cnt = i + 1;
+                            let sectionID = "nfr" + cnt++;
+                            // Add entry to section list
+                            let entry = document.createElement("li");
+                            entry.innerHTML = listEntry;
+                            let a = entry.querySelector("a");
+                            a.innerHTML = list[i];
+                            a.href = "#" + sectionID;
+                            ul.appendChild(entry);
+                            // Add section for NFR
+                            let section = document.createElement("section");
+                            section.classList.add("resume-section");
+                            section.id = sectionID;
+                            let sectionContainer = document.createElement("div");
+                            sectionContainer.classList.add("resume-section-content");
+                            // Sets section title - NFR name                    
+                            let sectionTitle = document.createElement("h2");
+                            sectionTitle.innerHTML = list[i];
+                            sectionContainer.appendChild(sectionTitle);
+                            entriesForNFR[list[i]].forEach(p => {
+                                // Foreach BP entry under the current NFR, create BP div
+                                let bp = data[p];
+                                let bpEntry = document.createElement("div");
+                                bpEntry.innerHTML = bpEntryTemplate;
+                                let bpCont = bpEntry.querySelector(".nfr-bp-content");
+                                bpCont.innerHTML = bp.descriptionHTML;
+                                let bpEntryTitle = bpEntry.querySelector("h3");
+                                bpEntryTitle.innerHTML = bp.titleHTML;
+                                sectionContainer.appendChild(bpEntry);
+                                let hr = document.createElement("hr");
+                                sectionContainer.appendChild(hr);
+                            });
+                            section.appendChild(sectionContainer);
+                            sectionParent.appendChild(section);
+                        }
+                        resolve(el.outerHTML);
+                    });
+                });
+            });
+        }
+        static OLD_createOutputDocument(paths, data) {
             return new Promise((resolve, reject) => {
                 fetch("outputDocumentTemplate.html").then(resp => {
                     resp.text().then(content => {

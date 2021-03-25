@@ -25,4 +25,9 @@ export default class GitContents{
     pathComponents(): string[]{
         return this.path.split("/");
     }
+
+    
+    static pathComponentsOfPath(path: string): string[]{
+        return path.split("/");
+    }
 }
