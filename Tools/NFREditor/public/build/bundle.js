@@ -35777,11 +35777,26 @@ var app = (function () {
                                 let bp = data[p];
                                 let bpEntry = document.createElement("div");
                                 bpEntry.innerHTML = bpEntryTemplate;
+                                // Set BP HTML content
                                 let bpCont = bpEntry.querySelector(".nfr-bp-content");
                                 bpCont.innerHTML = bp.descriptionHTML;
+                                // Set BP title
                                 let bpEntryTitle = bpEntry.querySelector("h3");
                                 bpEntryTitle.innerHTML = bp.titleHTML;
                                 sectionContainer.appendChild(bpEntry);
+                                // Add BP Questions
+                                let qSection = bpEntry.querySelector(".nfr-section-questions");
+                                if (bp.surveyQuestions.length == 0) {
+                                    qSection.innerHTML = "~No questions~";
+                                }
+                                else {
+                                    let tableBody = qSection.querySelector("tbody");
+                                    bp.surveyQuestions.forEach(element => {
+                                        let row = document.createElement("tr");
+                                        row.innerHTML = `<td>${element.question} </td><td>${element.howToMeasure}</td><td>${element.target}</td>`;
+                                        tableBody.appendChild(row);
+                                    });
+                                }
                                 let hr = document.createElement("hr");
                                 sectionContainer.appendChild(hr);
                             });
